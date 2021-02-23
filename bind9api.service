@@ -1,0 +1,19 @@
+[Unit]
+Description=BIND9API
+After=syslog.target
+After=network.target
+After=redis-server.service
+Requires=redis-server.service
+ 
+[Service]
+Type=forking
+User=dnsmanager
+Group=dnsmanager
+ExecStart=/usr/bin/php /opt/dnsmanager/BIND9API/api.php start -d
+ExecStop=/usr/bin/php /opt/dnsmanager/BIND9API/api.php stop
+ExecReload=/usr/bin/php /opt/dnsmanager/BIND9API/api.php restart -d
+PrivateTmp=true
+RemainAfterExit=yes
+ 
+[Install]
+WantedBy=multi-user.target
