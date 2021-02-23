@@ -25,6 +25,12 @@ $main['named_reload_cmd'] = '/bin/sudo /bin/systemctl reload bind9.service';
 $main['named_directory'] = '/etc/bind/zones';
 $main['named_include_file'] = '/etc/bind/zones/include.conf';
 
+$main['default_permissions'] = [];
+$main['default_permissions']['/zones']['methods'] = ['GET', 'PUT'];
+$main['default_permissions']['/zones/{domain}']['methods'] = ['GET', 'PUT', 'DELETE'];
+$main['default_permissions']['/zones/{domain}/{id}']['methods'] = ['POST', 'DELETE'];
+$main['default_permissions']['/import']['methods'] = ['PUT'];
+
 //Cluster
 $main['cluster'] = [];
 //Example
