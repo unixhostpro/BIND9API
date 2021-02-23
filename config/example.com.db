@@ -1,0 +1,7 @@
+$TTL 14400
+@    IN    SOA    ns1.example.com.    hostmaster.example.com. (
+                                            2020041811
+                                            7200
+                                            3600
+                                            1209600
+                                            180 )
