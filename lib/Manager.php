@@ -491,12 +491,7 @@ class Manager {
 		return false;
     }
     public function defaultUserPermissions() {
-    	$perm = [];
-    	$perm['/zones']['methods'] = ['GET', 'PUT'];
-    	$perm['/zones/{domain}']['methods'] = ['GET', 'PUT', 'DELETE'];
-    	$perm['/zones/{domain}/{id}']['methods'] = ['POST', 'DELETE'];
-    	$perm['/import']['methods'] = ['PUT'];
-    	return $perm;
+		return $this->main['default_permissions'];
     }
     private function changeUser() {
     	$key = 'api_user_' . $this->chuser;
