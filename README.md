@@ -125,6 +125,12 @@ $result = $api->get('/zones/mynewdomain.com');
 print_r($result);
 ```
 
+## Cluster sync
+
+Add Cronjob
+
+```*/1 * * * * /usr/bin/php /opt/dnsmanager/BIND9API/cron.php```
+
 ## API Documentation
 ```GET /zones``` - Return list of DNS-zones
 
