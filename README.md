@@ -86,7 +86,7 @@ For showing usage parameters execute command:
 
 ## Usage 
 
-First create user needed
+Create user for api access
 ```
 cd /opt/dnsmanager/BIND9API/scripts
 php addSuperUser.php superuser 127.0.0.1/32
@@ -127,7 +127,7 @@ print_r($result);
 
 ## Cluster sync
 
-Add Cronjob
+Set up d cron job
 
 ```*/1 * * * * /usr/bin/php /opt/dnsmanager/BIND9API/cron.php```
 
@@ -156,7 +156,7 @@ options[serial] | integer | no | Serial number |
 options[refresh] | integer | no | Refresh period |
 options[retry] | integer | no | Retry period |
 options[expiry] | integer | no | Expiry time |
-options[minimum] | integer | no | Minumum TTIL |
+options[minimum] | integer | no | Minimum TTL |
 
 ```DELETE /zones/{domain}``` - Delete DNS-zone
 Argument | Type |  Required | Description
@@ -192,18 +192,17 @@ Argument | Type |  Required | Description
 id | integer | yes | Record ID | 
 domain | string | yes | Domain name | 
 
-```GET /users``` - List of API-users (Only for Superusers)
+```GET /users``` - List of API-users
 
 No arguments.
 
-```PUT /users``` - Create API-user (Only for Superusers)
+```PUT /users``` - Create API-user
 Argument | Type |  Required | Description
 --------- | ---- | ---- | ----------------
 name | string | yes | Username |
 allowed_ips | array | no | Array of allowed IP's to API access |
 allowed_ips[*] | string (ipv4/ipv6) | no | IP or subnet (Example: 192.168.0.1 or 192.168.0.0/24) |
 expire_timestamp | integer | no | Timestamp of expire user access. 0 - Never expire |
-superuser | boolean | no | Superuser permissions |
 superuser | boolean | no | Superuser permissions |
 access | array | no | Access to routes and methods |
 access[route] | string | no | Access to route |
@@ -214,7 +213,7 @@ Argument | Type |  Required | Description
 --------- | ---- | ---- | ----------------
 name | string | yes | Username 
 
-```POST /users/{name}``` - Mofidy API-user (Only for Superusers)
+```POST /users/{name}``` - Mofidy API-user
 Argument | Type |  Required | Description
 --------- | ---- | ---- | ----------------
 name | string | yes | Username |
@@ -228,7 +227,7 @@ access | array | no | Access to routes and methods |
 access[route] | string | no | Access to route |
 access[route][methods][*] | string | no | Access to methods of routes (GET/POST/PUT/DELETE) |
 
-```DELETE /users/{name}``` - Delete API-user (Only for Superusers)
+```DELETE /users/{name}``` - Delete API-user
 Argument | Type |  Required | Description
 --------- | ---- | ---- | ----------------
 name | string | yes | Username |
