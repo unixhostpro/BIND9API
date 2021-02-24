@@ -224,8 +224,8 @@ expire_timestamp | integer | no | Timestamp of expire user access. 0 - Never exp
 superuser | boolean | no | Superuser permissions |
 superuser | boolean | no | Superuser permissions |
 access | array | no | Access to routes and methods |
-access[*] | string | no | Access to route |
-access[*][methods][*] | string | no | Access to methods of routes (GET/POST/PUT/DELETE) |
+access[ * ] | string | no | Access to route |
+access[ * ][methods][ * ] | string | no | Access to methods of routes (GET/POST/PUT/DELETE) |
 
 ```DELETE /users/{name}``` - Delete API-user
 Argument | Type |  Required | Description
