@@ -126,4 +126,119 @@ print_r($result);
 ```
 
 ## API Documentation
-soon
+```GET /zones``` - Return list of DNS-zones
+
+Argument | Type |  Required | Description
+--------- | ---- | ---- | ----------------
+| all | boolean | no | Only for Superuser. Return all DNS-zones on the server |
+| limit | integer | no | Items return limit per request | 
+| offset | integer | no | Number of first return item |
+
+```PUT /zones``` - Create new DNS-zone
+Argument | Type |  Required | Description
+--------- | ---- | ---- | ----------------
+domain | string | yes | Domain name |
+ip | string (ipv4) | yes | IP of main A record |
+ip6 | string (ipv6) | no | IP of main AAAA record |
+nameservers | array | no | Array of nameservers |
+nameservers[*] | string | no | Nameserver addresses|
+options | array | no | Array of options |
+options[ttl] | integer | no | DNS zone TTL |
+options[origin] | string | no | DNS zone Origin |
+options[contact] | string | no | Administrator contact E-Mail |
+options[serial] | integer | no | Serial number |
+options[refresh] | integer | no | Refresh period |
+options[retry] | integer | no | Retry period |
+options[expiry] | integer | no | Expiry time |
+options[minimum] | integer | no | Minumum TTIL |
+
+```DELETE /zones/{domain}``` - Delete DNS-zone
+Argument | Type |  Required | Description
+--------- | ---- | ---- | ----------------
+domain | string | yes | Domain name | 
+
+```GET /zones/{domain}``` - Return records of DNS-zone
+Argument | Type |  Required | Description
+--------- | ---- | ---- | ----------------
+domain | string | yes | Domain name | 
+soa | boolean | no | Include SOA record. As default ignored |
+
+```PUT /zones/{domain}``` - Create record
+Argument | Type |  Required | Description
+--------- | ---- | ---- | ----------------
+domain | string | yes | Domain name | 
+name | string | yes | Record name |
+type | string | yes | Record type |
+ttl | integer | no | Record TTL |
+value | string | yes | Record value |
+
+```POST /zones/{domain}/{id}``` - Record modify
+Argument | Type |  Required | Description
+--------- | ---- | ---- | ----------------
+id | integer | yes | Record ID | 
+domain | string | yes | Domain name | 
+ttl | integer | no | Record TTL | 
+value | string | yes | Record value |
+
+```DELETE /zones/{domain}/{id}``` - Delete record
+Argument | Type |  Required | Description
+--------- | ---- | ---- | ----------------
+id | integer | yes | Record ID | 
+domain | string | yes | Domain name | 
+
+```GET /users``` - List of API-users (Only for Superusers)
+
+No arguments.
+
+```PUT /users``` - Create API-user (Only for Superusers)
+Argument | Type |  Required | Description
+--------- | ---- | ---- | ----------------
+name | string | yes | Username |
+allowed_ips | array | no | Array of allowed IP's to API access |
+allowed_ips[*] | string (ipv4/ipv6) | no | IP or subnet (Example: 192.168.0.1 or 192.168.0.0/24) |
+expire_timestamp | integer | no | Timestamp of expire user access. 0 - Never expire |
+superuser | boolean | no | Superuser permissions |
+superuser | boolean | no | Superuser permissions |
+access | array | no | Access to routes and methods |
+access[route] | string | no | Access to route |
+access[route][methods][*] | string | no | Access to methods of routes (GET/POST/PUT/DELETE) |
+
+```GET /users/{name}``` - Return API-user information (Only for Superusers)
+Argument | Type |  Required | Description
+--------- | ---- | ---- | ----------------
+name | string | yes | Username 
+
+```POST /users/{name}``` - Mofidy API-user (Only for Superusers)
+Argument | Type |  Required | Description
+--------- | ---- | ---- | ----------------
+name | string | yes | Username |
+allowed_ips | array | no | Array of allowed IP's to API access |
+token | string | no | Change access token |
+allowed_ips[*] | string (ipv4/ipv6) | no | IP or subnet (Example: 192.168.0.1 or 192.168.0.0/24) |
+expire_timestamp | integer | no | Timestamp of expire user access. 0 - Never expire |
+superuser | boolean | no | Superuser permissions |
+superuser | boolean | no | Superuser permissions |
+access | array | no | Access to routes and methods |
+access[route] | string | no | Access to route |
+access[route][methods][*] | string | no | Access to methods of routes (GET/POST/PUT/DELETE) |
+
+```DELETE /users/{name}``` - Delete API-user (Only for Superusers)
+Argument | Type |  Required | Description
+--------- | ---- | ---- | ----------------
+name | string | yes | Username |
+
+```GET /routes``` - List of available API-routes and methods
+
+No arguments.
+
+```PUT /import``` - Import DNS-zone as raw
+Argument | Type |  Required | Description
+--------- | ---- | ---- | ----------------
+domain | string | yes | Domain name | 
+zone | string | yes | DNS zone RAW |
+
+```PUT /cluster/import``` - Import DNS-zone as raw and replace if exists.
+Argument | Type |  Required | Description
+--------- | ---- | ---- | ----------------
+domain | string | yes | Domain name | 
+zone | string | yes | DNS zone RAW |
