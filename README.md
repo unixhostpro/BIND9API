@@ -147,7 +147,7 @@ domain | string | yes | Domain name |
 ip | string (ipv4) | yes | IP of main A record |
 ip6 | string (ipv6) | no | IP of main AAAA record |
 nameservers | array | no | Array of nameservers |
-nameservers[*] | string | no | Nameserver addresses|
+nameservers[ * ] | string | no | Nameserver addresses|
 options | array | no | Array of options |
 options[ttl] | integer | no | DNS zone TTL |
 options[origin] | string | no | DNS zone Origin |
@@ -201,12 +201,12 @@ Argument | Type |  Required | Description
 --------- | ---- | ---- | ----------------
 name | string | yes | Username |
 allowed_ips | array | no | Array of allowed IP's to API access |
-allowed_ips[*] | string (ipv4/ipv6) | no | IP or subnet (Example: 192.168.0.1 or 192.168.0.0/24) |
+allowed_ips[ * ] | string (ipv4/ipv6) | no | IP or subnet (Example: 192.168.0.1 or 192.168.0.0/24) |
 expire_timestamp | integer | no | Timestamp of expire user access. 0 - Never expire |
 superuser | boolean | no | Superuser permissions |
 access | array | no | Access to routes and methods |
-access[*] | string | no | Access to route |
-access[*][methods][*] | string | no | Access to methods of routes (GET/POST/PUT/DELETE) |
+access[ * ] | string | no | Access to route |
+access[ * ][methods][ * ] | string | no | Access to methods of routes (GET/POST/PUT/DELETE) |
 
 ```GET /users/{name}``` - Return API-user information
 Argument | Type |  Required | Description
@@ -219,7 +219,7 @@ Argument | Type |  Required | Description
 name | string | yes | Username |
 allowed_ips | array | no | Array of allowed IP's to API access |
 token | string | no | Change access token |
-allowed_ips[*] | string (ipv4/ipv6) | no | IP or subnet (Example: 192.168.0.1 or 192.168.0.0/24) |
+allowed_ips[ * ] | string (ipv4/ipv6) | no | IP or subnet (Example: 192.168.0.1 or 192.168.0.0/24) |
 expire_timestamp | integer | no | Timestamp of expire user access. 0 - Never expire |
 superuser | boolean | no | Superuser permissions |
 superuser | boolean | no | Superuser permissions |
