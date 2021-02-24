@@ -205,8 +205,8 @@ allowed_ips[*] | string (ipv4/ipv6) | no | IP or subnet (Example: 192.168.0.1 or
 expire_timestamp | integer | no | Timestamp of expire user access. 0 - Never expire |
 superuser | boolean | no | Superuser permissions |
 access | array | no | Access to routes and methods |
-access[route] | string | no | Access to route |
-access[route][methods][*] | string | no | Access to methods of routes (GET/POST/PUT/DELETE) |
+access[*] | string | no | Access to route |
+access[*][methods][*] | string | no | Access to methods of routes (GET/POST/PUT/DELETE) |
 
 ```GET /users/{name}``` - Return API-user information
 Argument | Type |  Required | Description
@@ -224,8 +224,8 @@ expire_timestamp | integer | no | Timestamp of expire user access. 0 - Never exp
 superuser | boolean | no | Superuser permissions |
 superuser | boolean | no | Superuser permissions |
 access | array | no | Access to routes and methods |
-access[route] | string | no | Access to route |
-access[route][methods][*] | string | no | Access to methods of routes (GET/POST/PUT/DELETE) |
+access[*] | string | no | Access to route |
+access[*][methods][*] | string | no | Access to methods of routes (GET/POST/PUT/DELETE) |
 
 ```DELETE /users/{name}``` - Delete API-user
 Argument | Type |  Required | Description
