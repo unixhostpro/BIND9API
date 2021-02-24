@@ -1,6 +1,6 @@
 # BIND9API
 
-<p>BIND9API - it's API server for DNS zones management.</p>
+<p>BIND9API - it's API server for DNS-zones management.</p>
 <p>Based on <a href="https://github.com/gotzmann/comet">Comet</a> and <a href="https://github.com/Badcow/DNS">Badcow DNS Library</a>.</p>
 
 ## Requestments
@@ -241,10 +241,10 @@ No arguments.
 Argument | Type |  Required | Description
 --------- | ---- | ---- | ----------------
 domain | string | yes | Domain name | 
-zone | string | yes | DNS zone RAW |
+zone | string | yes | DNS-zone RAW |
 
 ```PUT /cluster/import``` - Import DNS-zone as raw and replace if exists.
 Argument | Type |  Required | Description
 --------- | ---- | ---- | ----------------
 domain | string | yes | Domain name | 
-zone | string | yes | DNS zone RAW |
+zone | string | yes | DNS-zone RAW |
