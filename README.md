@@ -208,7 +208,7 @@ access | array | no | Access to routes and methods |
 access[route] | string | no | Access to route |
 access[route][methods][*] | string | no | Access to methods of routes (GET/POST/PUT/DELETE) |
 
-```GET /users/{name}``` - Return API-user information (Only for Superusers)
+```GET /users/{name}``` - Return API-user information
 Argument | Type |  Required | Description
 --------- | ---- | ---- | ----------------
 name | string | yes | Username 
