@@ -470,7 +470,7 @@ class Manager {
 			}
 		} else {
 			foreach ($scan as $username => $domains) {
-				array_merge($result, $domains);
+				$result = array_merge($result, $domains);
 			}
 		}
 		asort($result);
