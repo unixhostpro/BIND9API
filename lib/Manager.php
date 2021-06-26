@@ -79,7 +79,10 @@ class Manager {
 		$this->redis = $redis;	
     }
     public function zoneOpen(string $domain) {
-    	return file_get_contents($this->zoneFilePath($domain));
+    	if ($zone = @file_get_contents($this->zoneFilePath($domain))) {
+    		return $zone;
+    	}
+    	return false;
     }
     public function zoneParse(string $domain) {
     	$parse = \Badcow\DNS\Parser\Parser::parse($domain . '.', $this->zoneOpen($domain));
@@ -288,6 +291,7 @@ class Manager {
     	if (rename($file, $file . '.removed')) {
     		if ($this->rebuildZonesConf()) {
     			@unlink($file . '.removed');
+    			$this->clusterTaskRemoveByDomain($domain);
     			return true;
     		} else {
     			rename($file . '.removed', $file);
@@ -381,7 +385,7 @@ class Manager {
     	return [];
     }
     public function clusterTaskRemove(string $domain, string $url) {
-    	$remove = true;
+    	$remove = false;
 		$tasks = $this->redis->get('clusterTasks');
 		$tasks[$domain][$url] = true;
 		foreach ($this->getClusterConfig() as $remoteServer) {
@@ -394,7 +398,12 @@ class Manager {
 			unset($tasks[$domain]);
 		}	
 		$this->redis->set('clusterTasks', $tasks);
-    }    
+    } 
+    public function clusterTaskRemoveByDomain(string $domain) {
+		$tasks = $this->redis->get('clusterTasks');	
+		unset($tasks[$domain]);
+		return $this->redis->set('clusterTasks', $tasks);	
+    }       
     public function clusterTaskAdd(string $domain) {
 		$tasks = $this->redis->get('clusterTasks');
 		if (!is_array($tasks)) {
@@ -491,7 +500,12 @@ class Manager {
 		return false;
     }
     public function defaultUserPermissions() {
-		return $this->main['default_permissions'];
+    	$perm = [];
+    	$perm['/zones']['methods'] = ['GET', 'PUT'];
+    	$perm['/zones/{domain}']['methods'] = ['GET', 'PUT', 'DELETE'];
+    	$perm['/zones/{domain}/{id}']['methods'] = ['POST', 'DELETE'];
+    	$perm['/import']['methods'] = ['PUT'];
+    	return $perm;
     }
     private function changeUser() {
     	$key = 'api_user_' . $this->chuser;
@@ -715,7 +729,7 @@ class Manager {
 		}	
 	}	
 	public function isAllowedDomainName(string $domainname) {
-		if ($this->main['domain_validate'] === false) {
+		if ($this->config['domain_validate'] === false) {
 			return true;
 		}
 		if (in_array($domainname, $this->redis->get('allDomains'))) {
