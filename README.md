@@ -213,7 +213,7 @@ Argument | Type |  Required | Description
 --------- | ---- | ---- | ----------------
 name | string | yes | Username 
 
-```POST /users/{name}``` - Mofidy API-user
+```POST /users/{name}``` - Modify API-user
 Argument | Type |  Required | Description
 --------- | ---- | ---- | ----------------
 name | string | yes | Username |
