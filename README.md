@@ -135,6 +135,7 @@ Set up d cron job
 ```GET /zones``` - Return list of DNS-zones
 
 Argument | Type |  Required | Description
+
 --------- | ---- | ---- | ----------------
 | all | boolean | no | Only for Superuser. Return all DNS-zones on the server |
 | limit | integer | no | Items return limit per request | 
