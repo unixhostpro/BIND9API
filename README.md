@@ -142,7 +142,7 @@ Argument | Type |  Required | Description
 
 ```PUT /zones``` - Create new DNS-zone
 Argument | Type |  Required | Description
---------- | ---- | ---- | ----------------
+-------- | ---- | --------- | ----------------
 domain | string | yes | Domain name |
 ip | string (ipv4) | yes | IP of main A record |
 ip6 | string (ipv6) | no | IP of main AAAA record |
@@ -160,18 +160,18 @@ options[minimum] | integer | no | Minimum TTL |
 
 ```DELETE /zones/{domain}``` - Delete DNS-zone
 Argument | Type |  Required | Description
---------- | ---- | ---- | ----------------
+-------- | ---- | --------- | ----------------
 domain | string | yes | Domain name | 
 
 ```GET /zones/{domain}``` - Return records of DNS-zone
 Argument | Type |  Required | Description
---------- | ---- | ---- | ----------------
+-------- | ---- | --------- | ----------------
 domain | string | yes | Domain name | 
 soa | boolean | no | Include SOA record. As default ignored |
 
 ```PUT /zones/{domain}``` - Create record
 Argument | Type |  Required | Description
---------- | ---- | ---- | ----------------
+-------- | ---- | --------- | ----------------
 domain | string | yes | Domain name | 
 name | string | yes | Record name |
 type | string | yes | Record type |
@@ -180,7 +180,7 @@ value | string | yes | Record value |
 
 ```POST /zones/{domain}/{id}``` - Record modify
 Argument | Type |  Required | Description
---------- | ---- | ---- | ----------------
+-------- | ---- | --------- | ------------
 id | integer | yes | Record ID | 
 domain | string | yes | Domain name | 
 ttl | integer | no | Record TTL | 
@@ -188,7 +188,7 @@ value | string | yes | Record value |
 
 ```DELETE /zones/{domain}/{id}``` - Delete record
 Argument | Type |  Required | Description
---------- | ---- | ---- | ----------------
+-------- | ---- | --------- | ----------------
 id | integer | yes | Record ID | 
 domain | string | yes | Domain name | 
 
@@ -198,7 +198,7 @@ No arguments.
 
 ```PUT /users``` - Create API-user
 Argument | Type |  Required | Description
---------- | ---- | ---- | ----------------
+-------- | ---- | --------- | ----------------
 name | string | yes | Username |
 allowed_ips | array | no | Array of allowed IP's to API access |
 allowed_ips[ * ] | string (ipv4/ipv6) | no | IP or subnet (Example: 192.168.0.1 or 192.168.0.0/24) |
@@ -210,12 +210,12 @@ access[ * ][methods][ * ] | string | no | Access to methods of routes (GET/POST/
 
 ```GET /users/{name}``` - Return API-user information
 Argument | Type |  Required | Description
---------- | ---- | ---- | ----------------
+-------- | ---- | --------- | ----------------
 name | string | yes | Username 
 
 ```POST /users/{name}``` - Modify API-user
 Argument | Type |  Required | Description
---------- | ---- | ---- | ----------------
+-------- | ---- | --------- | ----------------
 name | string | yes | Username |
 allowed_ips | array | no | Array of allowed IP's to API access |
 token | string | no | Change access token |
@@ -229,7 +229,7 @@ access[ * ][methods][ * ] | string | no | Access to methods of routes (GET/POST/
 
 ```DELETE /users/{name}``` - Delete API-user
 Argument | Type |  Required | Description
---------- | ---- | ---- | ----------------
+-------- | ---- | --------- | ----------------
 name | string | yes | Username |
 
 ```GET /routes``` - List of available API-routes and methods
@@ -238,12 +238,12 @@ No arguments.
 
 ```PUT /import``` - Import DNS-zone as raw
 Argument | Type |  Required | Description
---------- | ---- | ---- | ----------------
+-------- | ---- | --------- | ----------------
 domain | string | yes | Domain name | 
 zone | string | yes | DNS-zone RAW |
 
 ```PUT /cluster/import``` - Import DNS-zone as raw and replace if exists.
 Argument | Type |  Required | Description
---------- | ---- | ---- | ----------------
+-------- | ---- | --------- | ----------------
 domain | string | yes | Domain name | 
 zone | string | yes | DNS-zone RAW |
